@@ -1,0 +1,20 @@
+﻿<label for="mySelect">Выбрать раздел</label>
+<select name="mySelect" id="mySelect"
+        ng-options="bookmark.Name for bookmark in bookmarks track by bookmark.BookmarkId"
+        ng-model="bookmarkOption"
+        ng-click="updateBookmarks(bookmarkOption)"></select>
+<br />
+<input ng-model="bookmarkOption.Name" />
+<br />
+<hot-table settings="settings"
+           datarows="bookmarkOption.Options">
+    <hot-column data="OptionId" title="'ID'" read-only></hot-column>
+    <hot-column data="Name" title="'Название'"></hot-column>
+    <hot-column data="Price" title="'Цена'"></hot-column>
+    <hot-column data="Description" title="'Описание'"></hot-column>
+</hot-table>
+
+<br />
+<button type="button" ng-click="saveChanges(bookmarkOption)">Сохранить</button>
+<button type="button" ng-click="addEmpty()">Добавить раздел</button>
+<button type="button" ng-click="remove(bookmarkOption)">Удалить раздел</button>

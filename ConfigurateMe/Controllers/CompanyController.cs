@@ -49,7 +49,7 @@ namespace ConfigurateMe.Controllers
             {
                 company.AccountName = RouteData.Values["id"].ToString();
                 company.DateOfRegistration = DateTime.Now;
-                company.CompanyRate = db.Rates.First();
+                company.CompanyRate = db.Rates.First(); //осторожнее!
                 db.CompanySet.Add(company);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");

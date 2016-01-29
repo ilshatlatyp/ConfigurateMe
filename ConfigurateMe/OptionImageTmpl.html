@@ -1,0 +1,22 @@
+﻿<h5>Список опций</h5>
+<select name="mySelect" id="mySelect"
+        ng-options="bookmark.Name for bookmark in bookmarks track by bookmark.BookmarkId"
+        ng-model="bookmarkOption"></select>
+
+
+    <table style="width:100%">
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Картинка</th>
+        </tr>
+        <tr ng-repeat="option in bookmarkOption.Options">
+            <td>{{option.OptionId}}</td>
+            <td>{{option.Name}}</td>
+            <td>{{option.Description}}</td>
+            <td>
+                <input type="file" ng-file-select="onFileSelect($files)">
+            </td>
+        </tr>
+    </table>

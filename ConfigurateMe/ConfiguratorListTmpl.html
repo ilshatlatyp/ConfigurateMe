@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html ng-app="ListApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/jquery-2.1.4.min.js"></script>
+    <script src="Scripts/ListScript.js"></script>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <div>
+        <section ng-controller="PanelController as panel">
+                <ul class="nav nav-tabs" >
+                    <li ng-repeat="bm in bookmarks" ng-class="{active: $parent.panel.isSelected($index)}">
+                        <a href ng-click="$parent.panel.selectTab($index)">{{bm.Name}}</a>
+                    </li>
+                </ul>
+                <div  class="panel" ng-repeat="bm in bookmarks" ng-show="$parent.panel.isSelected($index)">
+                    <h4>{{bm.Name}}</h4>
+                    <div ng-include="'SelectOptionTmpl.html'"></div>
+                </div>
+       </section>
+        <button type="button">Готово</button>
+    </div>
+</body>
+</html>

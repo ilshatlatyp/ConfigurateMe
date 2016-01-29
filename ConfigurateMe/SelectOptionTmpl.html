@@ -1,0 +1,23 @@
+﻿<div class="form-group">
+    <table style="width:100%">
+        <tr ng-repeat="option in bm.Options">
+            <td>
+                <label>
+                    <input type="checkbox" ng-model="option.isSelected" ng-change="select(option, $index)">
+                    {{option.Name}}
+                </label>
+            </td>
+            <td>{{option.Description}}</td>
+            <td>{{option.Price | currency}}</td>
+            <td>    
+                <input type="number" ng-model="option.Quantity" />
+            </td>
+        </tr>
+    </table>
+</div>
+<hr />
+<ul>
+    <li ng-repeat="opt in options">{{opt.Name}}  Price: {{opt.Price*opt.Quantity}}</li>
+</ul>
+<hr />
+<b>Итого: {{total()}} руб </b>

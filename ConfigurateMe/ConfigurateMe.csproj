@@ -49,8 +49,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SendGrid, Version=6.3.4.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
@@ -78,6 +78,14 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -184,7 +192,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookmarkApiController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -216,6 +226,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="addNewOptionsTmpl.html" />
+    <Content Include="ConfiguratorListTmpl.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\handsontable\handsontable.css" />
@@ -226,17 +238,114 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="OptionImageTmpl.html" />
+    <Content Include="OptionsSettingTmpl.html" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\handsontable\moment\LICENSE" />
+    <Content Include="Scripts\handsontable\ngHandsontable.js" />
+    <Content Include="Scripts\handsontable\ngHandsontable.min.js" />
+    <Content Include="Scripts\handsontable\pikaday\LICENSE" />
+    <Content Include="Scripts\handsontable\zeroclipboard\LICENSE" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\handsontable\handsontable.full.js" />
     <Content Include="Scripts\handsontable\handsontable.full.min.js" />
     <Content Include="Scripts\handsontable\handsontable.js" />
     <Content Include="Scripts\handsontable\handsontable.min.js" />
+    <Content Include="Scripts\handsontable\moment\locale\af.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ar-ma.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ar-sa.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ar-tn.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ar.js" />
+    <Content Include="Scripts\handsontable\moment\locale\az.js" />
+    <Content Include="Scripts\handsontable\moment\locale\be.js" />
+    <Content Include="Scripts\handsontable\moment\locale\bg.js" />
+    <Content Include="Scripts\handsontable\moment\locale\bn.js" />
+    <Content Include="Scripts\handsontable\moment\locale\bo.js" />
+    <Content Include="Scripts\handsontable\moment\locale\br.js" />
+    <Content Include="Scripts\handsontable\moment\locale\bs.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ca.js" />
+    <Content Include="Scripts\handsontable\moment\locale\cs.js" />
+    <Content Include="Scripts\handsontable\moment\locale\cv.js" />
+    <Content Include="Scripts\handsontable\moment\locale\cy.js" />
+    <Content Include="Scripts\handsontable\moment\locale\da.js" />
+    <Content Include="Scripts\handsontable\moment\locale\de-at.js" />
+    <Content Include="Scripts\handsontable\moment\locale\de.js" />
+    <Content Include="Scripts\handsontable\moment\locale\el.js" />
+    <Content Include="Scripts\handsontable\moment\locale\en-au.js" />
+    <Content Include="Scripts\handsontable\moment\locale\en-ca.js" />
+    <Content Include="Scripts\handsontable\moment\locale\en-gb.js" />
+    <Content Include="Scripts\handsontable\moment\locale\eo.js" />
+    <Content Include="Scripts\handsontable\moment\locale\es.js" />
+    <Content Include="Scripts\handsontable\moment\locale\et.js" />
+    <Content Include="Scripts\handsontable\moment\locale\eu.js" />
+    <Content Include="Scripts\handsontable\moment\locale\fa.js" />
+    <Content Include="Scripts\handsontable\moment\locale\fi.js" />
+    <Content Include="Scripts\handsontable\moment\locale\fo.js" />
+    <Content Include="Scripts\handsontable\moment\locale\fr-ca.js" />
+    <Content Include="Scripts\handsontable\moment\locale\fr.js" />
+    <Content Include="Scripts\handsontable\moment\locale\fy.js" />
+    <Content Include="Scripts\handsontable\moment\locale\gl.js" />
+    <Content Include="Scripts\handsontable\moment\locale\he.js" />
+    <Content Include="Scripts\handsontable\moment\locale\hi.js" />
+    <Content Include="Scripts\handsontable\moment\locale\hr.js" />
+    <Content Include="Scripts\handsontable\moment\locale\hu.js" />
+    <Content Include="Scripts\handsontable\moment\locale\hy-am.js" />
+    <Content Include="Scripts\handsontable\moment\locale\id.js" />
+    <Content Include="Scripts\handsontable\moment\locale\is.js" />
+    <Content Include="Scripts\handsontable\moment\locale\it.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ja.js" />
+    <Content Include="Scripts\handsontable\moment\locale\jv.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ka.js" />
+    <Content Include="Scripts\handsontable\moment\locale\km.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ko.js" />
+    <Content Include="Scripts\handsontable\moment\locale\lb.js" />
+    <Content Include="Scripts\handsontable\moment\locale\lt.js" />
+    <Content Include="Scripts\handsontable\moment\locale\lv.js" />
+    <Content Include="Scripts\handsontable\moment\locale\me.js" />
+    <Content Include="Scripts\handsontable\moment\locale\mk.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ml.js" />
+    <Content Include="Scripts\handsontable\moment\locale\mr.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ms-my.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ms.js" />
+    <Content Include="Scripts\handsontable\moment\locale\my.js" />
+    <Content Include="Scripts\handsontable\moment\locale\nb.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ne.js" />
+    <Content Include="Scripts\handsontable\moment\locale\nl.js" />
+    <Content Include="Scripts\handsontable\moment\locale\nn.js" />
+    <Content Include="Scripts\handsontable\moment\locale\pl.js" />
+    <Content Include="Scripts\handsontable\moment\locale\pt-br.js" />
+    <Content Include="Scripts\handsontable\moment\locale\pt.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ro.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ru.js" />
+    <Content Include="Scripts\handsontable\moment\locale\si.js" />
+    <Content Include="Scripts\handsontable\moment\locale\sk.js" />
+    <Content Include="Scripts\handsontable\moment\locale\sl.js" />
+    <Content Include="Scripts\handsontable\moment\locale\sq.js" />
+    <Content Include="Scripts\handsontable\moment\locale\sr-cyrl.js" />
+    <Content Include="Scripts\handsontable\moment\locale\sr.js" />
+    <Content Include="Scripts\handsontable\moment\locale\sv.js" />
+    <Content Include="Scripts\handsontable\moment\locale\ta.js" />
+    <Content Include="Scripts\handsontable\moment\locale\th.js" />
+    <Content Include="Scripts\handsontable\moment\locale\tl-ph.js" />
+    <Content Include="Scripts\handsontable\moment\locale\tr.js" />
+    <Content Include="Scripts\handsontable\moment\locale\tzl.js" />
+    <Content Include="Scripts\handsontable\moment\locale\tzm-latn.js" />
+    <Content Include="Scripts\handsontable\moment\locale\tzm.js" />
+    <Content Include="Scripts\handsontable\moment\locale\uk.js" />
+    <Content Include="Scripts\handsontable\moment\locale\uz.js" />
+    <Content Include="Scripts\handsontable\moment\locale\vi.js" />
+    <Content Include="Scripts\handsontable\moment\locale\zh-cn.js" />
+    <Content Include="Scripts\handsontable\moment\locale\zh-tw.js" />
+    <Content Include="Scripts\handsontable\moment\moment.js" />
+    <Content Include="Scripts\handsontable\pikaday\pikaday.css" />
+    <Content Include="Scripts\handsontable\pikaday\pikaday.js" />
+    <Content Include="Scripts\handsontable\zeroclipboard\ZeroClipboard.js" />
+    <Content Include="Scripts\handsontable\zeroclipboard\ZeroClipboard.swf" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -244,10 +353,19 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\ListScript.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\MyScript.js" />
+    <Content Include="Scripts\ng-file-upload-all.js" />
+    <Content Include="Scripts\ng-file-upload-all.min.js" />
+    <Content Include="Scripts\ng-file-upload-shim.js" />
+    <Content Include="Scripts\ng-file-upload-shim.min.js" />
+    <Content Include="Scripts\ng-file-upload.js" />
+    <Content Include="Scripts\ng-file-upload.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="SelectOptionTmpl.html" />
     <Content Include="TODO.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
