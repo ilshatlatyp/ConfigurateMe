@@ -12,7 +12,7 @@ namespace ConfigurateMe.Models.Main
     {
         public Package()
         {
-            Options = new HashSet<Option>().ToList();
+            //Options = new HashSet<Option>().ToList();
         }
 
         #region Fields
@@ -170,13 +170,13 @@ namespace ConfigurateMe.Models.Main
 
       //  public int OptionId { get; set; }
 
-        /// <summary>
-        /// Свойство. Список опций в пакете
-        /// </summary>
-        public virtual List<Option> Options
-        {
-            get; set;
-        }
+        ///// <summary>
+        ///// Свойство. Список опций в пакете
+        ///// </summary>
+        //public virtual List<Option> Options
+        //{
+        //    get; set;
+        //}
 
         #endregion
     }

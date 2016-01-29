@@ -12,8 +12,8 @@ namespace ConfigurateMe.Models.Main
     {
         public Option()
         {
-            Packages = new HashSet<Package>().ToList();
-            Packages = new List<Package>();
+            //Packages = new HashSet<Package>().ToList();
+            //Packages = new List<Package>();
         }
 
         #region Fields
@@ -59,6 +59,7 @@ namespace ConfigurateMe.Models.Main
         /// <summary>
         /// Свойство. Название опции
         /// </summary>
+        [Display(Name = "Название опции")]
         public string Name
         {
             get
@@ -132,13 +133,13 @@ namespace ConfigurateMe.Models.Main
 
  //       public int PackageId { get; set; }
 
-        /// <summary>
-        /// Свойство. Список пакетов, в которых содержится опция
-        /// </summary>
-        public virtual List<Package> Packages
-        {
-            get; set;
-        }
+        ///// <summary>
+        ///// Свойство. Список пакетов, в которых содержится опция
+        ///// </summary>
+        //public virtual List<Package> Packages
+        //{
+        //    get; set;
+        //}
 
         [ForeignKey("Bookmark")]
         public int BookmarkId

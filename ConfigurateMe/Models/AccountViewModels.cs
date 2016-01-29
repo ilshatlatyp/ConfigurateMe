@@ -33,7 +33,7 @@ namespace ConfigurateMe.Models
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Запомнить браузер?")]
+        [Display(Name = "Запомнить меня?")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -68,6 +68,12 @@ namespace ConfigurateMe.Models
         [EmailAddress]
         [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
+
+        /// <summary>
+        /// Свойство. Идентификатор аккаунта
+        /// </summary>
+        [Display(Name = "Логин")]
+        public string AccountName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]

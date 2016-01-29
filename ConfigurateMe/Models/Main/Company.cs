@@ -69,9 +69,14 @@ namespace ConfigurateMe.Models.Main
         private string _phone;
 
         /// <summary>
+        /// Поле. Флаг приватности
+        /// </summary>
+        private bool _publ;
+
+        /// <summary>
         /// Поле. 
         /// </summary>
-        private CompanyTypes _type;
+        private Rate _type;
 
         #endregion
 
@@ -89,6 +94,7 @@ namespace ConfigurateMe.Models.Main
         /// <summary>
         /// Свойство. Название компании
         /// </summary>
+        [Display(Name = "Название компании")]
         public string Name
         {
             get
@@ -104,6 +110,7 @@ namespace ConfigurateMe.Models.Main
         /// <summary>
         /// Свойство. Баланс
         /// </summary>
+        [Display(Name = "Баланс")]
         public double Balance
         {
             get
@@ -119,6 +126,7 @@ namespace ConfigurateMe.Models.Main
         /// <summary>
         /// Свойство. Логин
         /// </summary>
+        [Display(Name = "Логин")]
         public string AccountName
         {
             get
@@ -134,6 +142,7 @@ namespace ConfigurateMe.Models.Main
         /// <summary>
         /// Свойство. Логотип компании
         /// </summary>
+        [Display(Name = "Логотип")]
         public virtual byte[] Logo
         {
             get
@@ -160,10 +169,11 @@ namespace ConfigurateMe.Models.Main
                 _dateOfRegistration = value;
             }
         }
-        
+
         /// <summary>
         /// Свойство. Адрес компании
         /// </summary>
+        [Display(Name = "Адрес")]
         public string Address
         {
             get
@@ -175,25 +185,11 @@ namespace ConfigurateMe.Models.Main
                 _address = value;
             }
         }
-        
-        /// <summary>
-        /// Свойство. Имя директора
-        /// </summary>
-        //public string NameOfBoss
-        //{
-        //    get
-        //    {
-        //        return _nameOfBoss;
-        //    }
-        //    set
-        //    {
-        //        _nameOfBoss = value;
-        //    }
-        //}
 
         /// <summary>
         /// Свойство. Моб телефон контактного лица
         /// </summary>
+        [Display(Name = "Телефон")]
         public string Phone
         {
             get
@@ -207,19 +203,33 @@ namespace ConfigurateMe.Models.Main
         }
 
         /// <summary>
-        /// Свойство. Тип компании
+        /// Свойство. Приватность
         /// </summary>
-        public CompanyTypes CompanyType
+        [Display(Name = "Приватность")]
+        public bool Publ
         {
             get
             {
-                return _type;
+                return _publ;
             }
             set
             {
-                _type = value;
+                _publ = value;
             }
         }
+
+        [ForeignKey("CompanyRate")]
+        public int RateId
+        {
+            get; set;
+        }
+
+        /// <summary>
+        /// Свойство. Тариф компании
+        /// </summary>
+        [JsonIgnore]
+        [Display(Name = "Тариф")]
+        public virtual Rate CompanyRate { get; set; }
 
         /// <summary>
         /// Свойство. Список емайлов компании

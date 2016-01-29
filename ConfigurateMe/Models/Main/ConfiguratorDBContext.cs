@@ -42,17 +42,19 @@ namespace ConfigurateMe.Models.Main
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Option>().HasMany<Package>(x => x.Packages)
-                .WithMany(p => p.Options)
-                .Map(po =>
-                {
-                    po.MapLeftKey("PackId");
-                    po.MapRightKey("OptId");
-                    po.ToTable("PackageOptions");
-                });
-            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            //modelBuilder.Entity<Option>().HasMany<Package>(x => x.Packages)
+            //    .WithMany(p => p.Options)
+            //    .Map(po =>
+            //    {
+            //        po.MapLeftKey("PackId");
+            //        po.MapRightKey("OptId");
+            //        po.ToTable("PackageOptions");
+            //    });
+            //modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
             base.OnModelCreating(modelBuilder);
         }
+
+        public System.Data.Entity.DbSet<ConfigurateMe.Models.Main.Rate> Rates { get; set; }
     }
 }

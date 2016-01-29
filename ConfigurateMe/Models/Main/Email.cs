@@ -17,6 +17,7 @@ namespace ConfigurateMe.Models.Main
         /// <summary>
         /// Свойство. Емайл компании
         /// </summary>
+        [Display(Name = "E-Mail")]
         public string CompanyEmail { get; set; }
     }
 }
