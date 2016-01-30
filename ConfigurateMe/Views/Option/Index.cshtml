@@ -3,14 +3,14 @@
     ViewBag.Title = "Настройка опций";
 }
 
-<script src="Scripts/angular.js"></script>
-<script src="Scripts/ng-file-upload.js"></script>
-<script src="Scripts/jquery-1.10.2.min.js"></script>
-<script src="Scripts/MyScript.js"></script>
-<script src="Scripts/handsontable/handsontable.full.js"></script>
-<script src="Scripts/handsontable/handsontable.full.min.js"></script>
-<link href="Content/handsontable/handsontable.full.css" rel="stylesheet" />
-<script src="Scripts/handsontable/ngHandsontable.js"></script>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/ng-file-upload.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/MyScript.js"></script>
+<script src="~/Scripts/handsontable/handsontable.full.js"></script>
+<script src="~/Scripts/handsontable/handsontable.full.min.js"></script>
+<link href="~/Content/handsontable/handsontable.full.css" rel="stylesheet" />
+<script src="~/Scripts/handsontable/ngHandsontable.js"></script>
 
 <h2>Настройка опций</h2>
 <div ng-app="ConfAng">
@@ -27,13 +27,53 @@
         <div class="panel" ng-show="panel.isSelected(1)">
             <div ng-controller="HotController as Hot">
                 <h4>Список опций</h4>
-                <div ng-include="'addNewOptionsTmpl.html'"></div>
+                <label for="mySelect">Выбрать раздел</label>
+                <select name="mySelect" id="mySelect"
+                        ng-options="bookmark.Name for bookmark in bookmarks track by bookmark.BookmarkId"
+                        ng-model="bookmarkOption"
+                        ng-click="updateBookmarks(bookmarkOption)"></select>
+                <br />
+                <input ng-model="bookmarkOption.Name" />
+                <br />
+                <hot-table settings="settings"
+                           datarows="bookmarkOption.Options">
+                    <hot-column data="OptionId" title="'ID'" read-only></hot-column>
+                    <hot-column data="Name" title="'Название'"></hot-column>
+                    <hot-column data="Price" title="'Цена'"></hot-column>
+                    <hot-column data="Description" title="'Описание'"></hot-column>
+                </hot-table>
+
+                <br />
+                <button type="button" ng-click="saveChanges(bookmarkOption)">Сохранить</button>
+                <button type="button" ng-click="addEmpty()">Добавить раздел</button>
+                <button type="button" ng-click="remove(bookmarkOption)">Удалить раздел</button>
             </div>
         </div>
         <div class="panel" ng-show="panel.isSelected(2)">
             <div ng-controller="ImageController as image">
                 <h4>Загрузка изображений</h4>
-                <div ng-include="'OptionImageTmpl.html'"></div>
+                <h5>Список опций</h5>
+                <select name="mySelect" id="mySelect"
+                        ng-options="bookmark.Name for bookmark in bookmarks track by bookmark.BookmarkId"
+                        ng-model="bookmarkOption"></select>
+
+
+                <table style="width:100%">
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Описание</th>
+                        <th>Картинка</th>
+                    </tr>
+                    <tr ng-repeat="option in bookmarkOption.Options">
+                        <td>{{option.OptionId}}</td>
+                        <td>{{option.Name}}</td>
+                        <td>{{option.Description}}</td>
+                        <td>
+                            <input type="file" ng-file-select="onFileSelect($files)">
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
 

@@ -58,7 +58,7 @@ app.controller("HotController", function ($scope) {
     $scope.settings = {
         colHeaders: true,
         rowHeaders: true,
-        colWidths: 147,
+        colWidths: 250,
         minSpareRows: 3,
         minRows: 3,
         manualColumnResize: true,
