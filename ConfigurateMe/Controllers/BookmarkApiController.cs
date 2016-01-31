@@ -13,12 +13,12 @@ namespace ConfigurateMe.Controllers
     {
         private ConfiguratorDBContext db = new ConfiguratorDBContext();
 
-        public List<Bookmark> GetBookmarks(string AccountName)
+        public List<Bookmark> GetBookmarks(string id)
         {
 
             return db.BookmarkSet.Include(b => b.Options)
                 .Include(z=>z.Company)
-                .Where(x => x.Company.AccountName == AccountName)
+                .Where(x => x.Company.AccountName == id)
                 .ToList();
         }
     }

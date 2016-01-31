@@ -27,7 +27,24 @@ var emptyBookmark = bookmark;
 
 //var bookmarkOption = bookmark;
    
-var app = angular.module("ConfAng", ['ngHandsontable', 'ngFileUpload']);
+var app = angular.module("ConfAng", ['ngHandsontable', 'ngFileUpload', 'ngRoute']);
+//app.config(['$routeProvider', '$locationProvider',
+//  function ($routeProvider, $locationProvider) {
+//      $routeProvider
+//        .when('/Book/:bookId', {
+//            templateUrl: 'book.html',
+//            controller: 'BookCtrl',
+//            controllerAs: 'book'
+//        })
+//        .when('/Book/:bookId/ch/:chapterId', {
+//            templateUrl: 'chapter.html',
+//            controller: 'ChapterCtrl',
+//            controllerAs: 'chapter'
+//        });
+
+//      $locationProvider.html5Mode(true);
+//  }]);
+
 
 var handsontableData = [];
 
@@ -48,7 +65,14 @@ app.controller("PanelController", function ($scope) {
     };
 });
 
-app.controller("HotController", function ($scope) {
+app.controller("HotController", ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+
+    //$http.get('/api/BookmarkApi/').success(function (data) {
+    //    bookmarks = data;
+    //});
+
+    var p = $routeParams;
+
     //Функция обработки изменений в таблице
     var myAfterChangeHandler = function () {
         $scope.handsontableData = this.getData();
@@ -124,7 +148,7 @@ app.controller("HotController", function ($scope) {
     $scope.saveChanges = function (bookmark) {
         
     };
-});
+}]);
 //Контроллер для загрузки изображений
 app.controller("ImageController", ['$scope', 'Upload', function ($scope, Upload) {
 
