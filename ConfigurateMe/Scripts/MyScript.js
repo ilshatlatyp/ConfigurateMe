@@ -65,13 +65,13 @@ app.controller("PanelController", function ($scope) {
     };
 });
 
-app.controller("HotController", ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+app.controller("HotController", ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
     //$http.get('/api/BookmarkApi/').success(function (data) {
     //    bookmarks = data;
     //});
 
-    var p = $routeParams;
+    var p = $location;
 
     //Функция обработки изменений в таблице
     var myAfterChangeHandler = function () {
