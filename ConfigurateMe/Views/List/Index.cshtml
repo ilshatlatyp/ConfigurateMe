@@ -11,6 +11,9 @@
 <script src="~/Scripts/bootstrap.js"></script>
 
 <div ng-app="ListApp">
+    <p>@ViewBag.CompanyName</p>
+    <p>@ViewBag.CompanyAdr</p>
+    <p>@ViewBag.CompanyPhone</p>
     <section ng-controller="PanelController as panel">
         <ul class="nav nav-tabs">
             <li ng-repeat="bm in bookmarks" ng-class="{active: $parent.panel.isSelected($index)}">

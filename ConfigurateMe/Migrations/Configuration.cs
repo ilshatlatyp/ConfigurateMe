@@ -5,15 +5,15 @@ namespace ConfigurateMe.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ConfigurateMe.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ConfigurateMe.Models.Main.ConfiguratorDBContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
-            ContextKey = "ConfigurateMe.Models.ApplicationDbContext";
+            AutomaticMigrationsEnabled = true;
+            ContextKey = "ConfigurateMe.Models.Main.ConfiguratorDBContext";
         }
 
-        protected override void Seed(ConfigurateMe.Models.ApplicationDbContext context)
+        protected override void Seed(ConfigurateMe.Models.Main.ConfiguratorDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

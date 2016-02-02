@@ -71,7 +71,7 @@ namespace ConfigurateMe.Models.Main
         /// <summary>
         /// Поле. Флаг приватности
         /// </summary>
-        private bool _publ;
+        private bool _privacy;
 
         /// <summary>
         /// Поле. 
@@ -206,15 +206,15 @@ namespace ConfigurateMe.Models.Main
         /// Свойство. Приватность
         /// </summary>
         [Display(Name = "Приватность")]
-        public bool Publ
+        public bool Privacy
         {
             get
             {
-                return _publ;
+                return _privacy;
             }
             set
             {
-                _publ = value;
+                _privacy = value;
             }
         }
 

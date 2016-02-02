@@ -43,6 +43,11 @@ namespace ConfigurateMe.Models.Main
         /// </summary>
         private string _description;
 
+        /// <summary>
+        /// Поле. Миниатюры
+        /// </summary>
+        private byte[] _pic;
+
         #endregion
 
         #region Properties
@@ -117,18 +122,25 @@ namespace ConfigurateMe.Models.Main
             }
         }
 
-        [ForeignKey("Pictures")]
-        public int PictureId
-        {
-            get; set;
-        }
+        //[ForeignKey("Pictures")]
+        //public int PictureId
+        //{
+        //    get; set;
+        //}
 
         /// <summary>
         /// Свойство. Картинки опции
         /// </summary>
-        public virtual List<Picture> Pictures
+        public byte[] Pictures
         {
-            get; set;
+            get
+            {
+               return _pic;
+            }
+            set
+            {
+               _pic = value ;
+            }
         }
 
  //       public int PackageId { get; set; }

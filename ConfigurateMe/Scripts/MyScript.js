@@ -1,21 +1,21 @@
 ﻿/// <reference path="angular.js" />
 
 var options = [{ "OptionId": "", "Name": "", "Quantity": "", "Price": "", "Description": "", "Packages": [], "Picture": "", "isSelected": false }];
-var bookmarks = [
-    {
-        "BookmarkId": "1", "Name": "Отделочные материалы", "Options": [
-        { "OptionId": "1", "Name": "Штукатурка KL", "Quantity": "", "Price": "100", "Description": "Сухая смесь для выравнивания поверхности", "Packages": [], "Picture": "1", "isSelected": false },
-        { "OptionId": "2", "Name": "Клей обойный", "Quantity": "", "Price": "101", "Description": "Клей разбавляемый водой для поклейки обоев", "Packages": [], "Picture": "2", "isSelected": false },
-        { "OptionId": "3", "Name": "Краска белая", "Quantity": "", "Price": "103", "Description": "Краска вододисперсионная для внутренних работ", "Packages": [], "Picture": "3", "isSelected": false }
-        ], "Packages": [], "CompanyId": ""
-    },
-    {
-        "BookmarkId": "2", "Name": "Строительные материалы", "Options": [
-        { "OptionId": "4", "Name": "Цемент 100", "Quantity": "", "Price": "100", "Description": "Цемент марки 100. Изготовитель ООО Рога и копыта. Краснодар", "Packages": [], "Picture": "", "isSelected": false },
-        { "OptionId": "5", "Name": "Кирпич облицовочный", "Quantity": "", "Price": "101", "Description": "Кирпич облицовочный красный", "Packages": [], "Picture": "", "isSelected": false },
-        ], "Packages": [], "CompanyId": ""
-    }
-];
+var bookmarks = [];
+//    {
+//        "BookmarkId": "1", "Name": "Отделочные материалы", "Options": [
+//        { "OptionId": "1", "Name": "Штукатурка KL", "Quantity": "", "Price": "100", "Description": "Сухая смесь для выравнивания поверхности", "Packages": [], "Picture": "1", "isSelected": false },
+//        { "OptionId": "2", "Name": "Клей обойный", "Quantity": "", "Price": "101", "Description": "Клей разбавляемый водой для поклейки обоев", "Packages": [], "Picture": "2", "isSelected": false },
+//        { "OptionId": "3", "Name": "Краска белая", "Quantity": "", "Price": "103", "Description": "Краска вододисперсионная для внутренних работ", "Packages": [], "Picture": "3", "isSelected": false }
+//        ], "Packages": [], "CompanyId": ""
+//    },
+//    {
+//        "BookmarkId": "2", "Name": "Строительные материалы", "Options": [
+//        { "OptionId": "4", "Name": "Цемент 100", "Quantity": "", "Price": "100", "Description": "Цемент марки 100. Изготовитель ООО Рога и копыта. Краснодар", "Packages": [], "Picture": "", "isSelected": false },
+//        { "OptionId": "5", "Name": "Кирпич облицовочный", "Quantity": "", "Price": "101", "Description": "Кирпич облицовочный красный", "Packages": [], "Picture": "", "isSelected": false },
+//        ], "Packages": [], "CompanyId": ""
+//    }
+//];
 
 var bookmark = {
     "BookmarkId": null, "Name": null, "Options": [
@@ -67,11 +67,15 @@ app.controller("PanelController", function ($scope) {
 
 app.controller("HotController", ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
-    //$http.get('/api/BookmarkApi/').success(function (data) {
-    //    bookmarks = data;
-    //});
+    var p = $location.absUrl();
+    accountId = p.replace("http://localhost:52205/Option/Index/", "");
+    url = "/api/BookmarkApi/" + accountId;
+    //Получение данных об опциях
+    $http.get(url).success(function (data) {
+        $scope.bookmarks = data;
+    });
 
-    var p = $location;
+    
 
     //Функция обработки изменений в таблице
     var myAfterChangeHandler = function () {
