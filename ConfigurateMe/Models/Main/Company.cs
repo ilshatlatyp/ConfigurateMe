@@ -51,7 +51,7 @@ namespace ConfigurateMe.Models.Main
         /// <summary>
         /// Поле. Баланс
         /// </summary>
-        private double _balance;
+        //private double _balance;
 
         /// <summary>
         /// Поле. Адрес компании
@@ -110,18 +110,18 @@ namespace ConfigurateMe.Models.Main
         /// <summary>
         /// Свойство. Баланс
         /// </summary>
-        [Display(Name = "Баланс")]
-        public double Balance
-        {
-            get
-            {
-                return _balance;
-            }
-            set
-            {
-                _balance = value;
-            }
-        }
+        //[Display(Name = "Баланс")]
+        //public double Balance
+        //{
+        //    get
+        //    {
+        //        return _balance;
+        //    }
+        //    set
+        //    {
+        //        _balance = value;
+        //    }
+        //}
 
         /// <summary>
         /// Свойство. Логин

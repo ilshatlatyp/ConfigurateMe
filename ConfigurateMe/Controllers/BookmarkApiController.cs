@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Net.Http;
 using System.Web.Http;
 using ConfigurateMe.Models.Main;
+using System.Data.SqlClient;
 
 namespace ConfigurateMe.Controllers
 {
@@ -13,13 +14,29 @@ namespace ConfigurateMe.Controllers
     {
         private ConfiguratorDBContext db = new ConfiguratorDBContext();
 
-        public List<Bookmark> GetBookmarks(string id)
+        public Company GetBookmarks(string id)
         {
-
-            return db.BookmarkSet.Include(b => b.Options)
-                .Include(z=>z.Company)
-                .Where(x => x.Company.AccountName == id)
-                .ToList();
+            return db.CompanySet.Include(p => p.Bookmarks.Select(o => o.Options))
+                .Where(x => x.AccountName == id)
+                .First();
+                    
         }
+
+        [HttpPost]
+        public int InsertBookmarks(Bookmark bookmark)
+        {
+            db.BookmarkSet.Add(bookmark);
+
+            return db.SaveChanges();
+        }
+
+        [HttpPut]
+        public int UpdateBookmark(Bookmark bookmark)
+        {
+            db.Entry(bookmark).State = EntityState.Modified;
+
+            return db.SaveChanges();
+        }
+
     }
 }

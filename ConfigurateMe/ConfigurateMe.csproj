@@ -212,6 +212,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookmarkApiController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\ConfigController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -220,11 +221,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602020548061_Init.cs" />
-    <Compile Include="Migrations\201602020548061_Init.Designer.cs">
-      <DependentUpon>201602020548061_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Main\Bookmark.cs" />
     <Compile Include="Models\Main\Company.cs" />
@@ -257,6 +253,7 @@
     <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular-route.min.js.map" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="Scripts\ConfiguratorScript.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -268,7 +265,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Views\Option\addNewOptionsTmpl.html" />
-    <Content Include="ConfiguratorListTmpl.html" />
+    <Content Include="Views\List\ConfiguratorListTmpl.html" />
     <Content Include="Content\handsontable\handsontable.css" />
     <Content Include="Content\handsontable\handsontable.full.css" />
     <Content Include="Content\handsontable\handsontable.full.min.css" />
@@ -289,7 +286,6 @@
     <Content Include="Scripts\handsontable\ngHandsontable.min.js" />
     <Content Include="Scripts\handsontable\pikaday\LICENSE" />
     <Content Include="Scripts\handsontable\zeroclipboard\LICENSE" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\handsontable\handsontable.full.js" />
     <Content Include="Scripts\handsontable\handsontable.full.min.js" />
     <Content Include="Scripts\handsontable\handsontable.js" />
@@ -396,7 +392,7 @@
     <Content Include="Scripts\ng-file-upload.js" />
     <Content Include="Scripts\ng-file-upload.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="SelectOptionTmpl.html" />
+    <Content Include="Views\List\SelectOptionTmpl.html" />
     <Content Include="TODO.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -439,6 +435,7 @@
     <Content Include="Views\Option\Index.cshtml" />
     <Content Include="Views\List\Index.cshtml" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
+    <Content Include="Views\Config\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -446,11 +443,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602020548061_Init.resx">
-      <DependentUpon>201602020548061_Init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

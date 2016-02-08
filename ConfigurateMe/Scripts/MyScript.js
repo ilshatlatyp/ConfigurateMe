@@ -19,8 +19,8 @@ var bookmarks = [];
 
 var bookmark = {
     "BookmarkId": null, "Name": null, "Options": [
-    { "OptionId": null, "Name": null, "Quantity": null, "Price": null, "Description": null, "Packages": [], "Picture": null, "isSelected": false }
-    ], "Packages": [], "CompanyId": null
+    { "OptionId": null, "Name": null, "Quantity": null, "Price": null, "Description": null, "Picture": null, "isSelected": false }
+    ],  "CompanyId": null
 };
 
 var emptyBookmark = bookmark;
@@ -72,7 +72,8 @@ app.controller("HotController", ['$scope', '$http', '$location', function ($scop
     url = "/api/BookmarkApi/" + accountId;
     //Получение данных об опциях
     $http.get(url).success(function (data) {
-        $scope.bookmarks = data;
+        $scope.bookmarks = data.Bookmarks;
+        $scope.company = data;
     });
 
     
@@ -139,6 +140,7 @@ app.controller("HotController", ['$scope', '$http', '$location', function ($scop
 
     //Функция добавления пустого раздела
     $scope.addEmpty = function () {
+        emptyBookmark.CompanyId = $scope.company.CompanyId;
         $scope.bookmarks.push(emptyBookmark);
     };
 

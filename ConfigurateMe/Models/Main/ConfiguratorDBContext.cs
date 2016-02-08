@@ -40,6 +40,11 @@ namespace ConfigurateMe.Models.Main
         /// </summary>
         public virtual DbSet<Picture> PictureSet { get; set; }
 
+        /// <summary>
+        /// Свойство. Сущность связанная с таблицей Картинка
+        /// </summary>
+        public virtual DbSet<Rate> RateSet { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<Option>().HasMany<Package>(x => x.Packages)
@@ -54,7 +59,5 @@ namespace ConfigurateMe.Models.Main
 
             base.OnModelCreating(modelBuilder);
         }
-
-        public System.Data.Entity.DbSet<ConfigurateMe.Models.Main.Rate> Rates { get; set; }
     }
 }

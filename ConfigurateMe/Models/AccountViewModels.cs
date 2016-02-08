@@ -75,6 +75,12 @@ namespace ConfigurateMe.Models
         [Display(Name = "Логин")]
         public string AccountName { get; set; }
 
+        /// <summary>
+        /// Свойство. Баланс
+        /// </summary>
+        [Display(Name = "Баланс")]
+        public decimal Balance { get; set; }
+
         [Required]
         [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
         [DataType(DataType.Password)]

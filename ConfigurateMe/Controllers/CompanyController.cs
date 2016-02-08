@@ -10,6 +10,7 @@ using System.Data.Entity;
 
 namespace ConfigurateMe.Controllers
 {
+    [Authorize]
     public class CompanyController : Controller
     {
         ConfiguratorDBContext db = new ConfiguratorDBContext();
@@ -33,6 +34,14 @@ namespace ConfigurateMe.Controllers
         // GET: Companies/Create
         public ActionResult Create()
         {
+            if (db.RateSet.Any() == false)
+            {
+                Rate rate = new Rate();
+                rate.Name = "Тариф 1";
+                rate.Price = 1000;
+                db.RateSet.Add(rate);
+                db.SaveChanges();
+            }
             string AccountName = RouteData.Values["id"].ToString();
             ViewBag.AccountName = AccountName;
             return View();
@@ -49,7 +58,7 @@ namespace ConfigurateMe.Controllers
             {
                 company.AccountName = RouteData.Values["id"].ToString();
                 company.DateOfRegistration = DateTime.Now;
-                company.CompanyRate = db.Rates.First(); //осторожнее!
+                company.CompanyRate = db.RateSet.First(); //осторожнее!
                 db.CompanySet.Add(company);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index", "Home");

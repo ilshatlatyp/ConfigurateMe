@@ -14,6 +14,11 @@ namespace ConfigurateMe.Models
         /// </summary>
         public string AccountName { get; set; }
 
+        /// <summary>
+        /// Свойство. Баланс
+        /// </summary>
+        public decimal Balance { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType

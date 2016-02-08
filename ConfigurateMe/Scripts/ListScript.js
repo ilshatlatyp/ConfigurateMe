@@ -33,7 +33,8 @@ app.controller("PanelController", ['$scope', '$http', '$location', function ($sc
     url = "/api/BookmarkApi/" + accountId;
     //Получение данных об опциях
     $http.get(url).success(function (data) {
-        $scope.bookmarks = data;
+        $scope.bookmarks = data.Bookmarks;
+        $scope.company = data;
     });
 
     this.tab = 1;
